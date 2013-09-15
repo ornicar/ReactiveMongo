@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 object BuildSettings {
-  val buildVersion = "0.10.0"
+  val buildVersion = "0.10.0-THIB"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
@@ -34,15 +34,15 @@ object Dependencies {
   val netty = "io.netty" % "netty" % "3.6.5.Final" cross CrossVersion.Disabled
 
   def akkaActor(sv: String) = sv match {
-    case "2.10.0" => "com.typesafe.akka" %% "akka-actor" % "2.1.0"
-    case "2.10.1" => "com.typesafe.akka" %% "akka-actor" % "2.1.2"
-    case "2.10.2" => "com.typesafe.akka" %% "akka-actor" % "2.1.2"
+    //case "2.10.0" => "com.typesafe.akka" %% "akka-actor" % "2.1.0"
+    //case "2.10.1" => "com.typesafe.akka" %% "akka-actor" % "2.1.2"
+    case "2.10.2" => "com.typesafe.akka" %% "akka-actor" % "2.2.1"
   }
 
   def iteratees(sv: String) = sv match {
-    case "2.10.0" => "play" %% "play-iteratees" % "2.1.0"
-    case "2.10.1" => "play" %% "play-iteratees" % "2.1.1"
-    case "2.10.2" => "play" %% "play-iteratees" % "2.1.4"
+    //case "2.10.0" => "play" %% "play-iteratees" % "2.1.0"
+    //case "2.10.1" => "play" %% "play-iteratees" % "2.1.1"
+    case "2.10.2" => "com.typesafe.play" %% "play-iteratees" % "2.2.0-RC1"
   }
 
   val logbackVer = "1.0.11"
@@ -51,8 +51,8 @@ object Dependencies {
     "ch.qos.logback" % "logback-classic" % logbackVer)
 
   def specs(sv: String) = sv match {
-    case "2.10.0" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
-    case "2.10.1" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
+    //case "2.10.0" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
+    //case "2.10.1" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
     case "2.10.2" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
   }
 
