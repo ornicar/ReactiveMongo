@@ -20,7 +20,12 @@ object BuildSettings {
     scalacOptions in (Compile, doc) ++= Seq("-unchecked", "-deprecation", "-implicits"),
     mappings in (Compile, packageBin) ~= filter,
     mappings in (Compile, packageSrc) ~= filter,
-    mappings in (Compile, packageDoc) ~= filter) 
+    mappings in (Compile, packageDoc) ~= filter, 
+    publishTo := Some(Resolver.sftp(
+      "iliaz",
+      "scala.iliaz.com"
+    ) as ("scala_iliaz_com", Path.userHome / ".ssh" / "id_rsa"))
+  )
 }
 
 object Resolvers {
