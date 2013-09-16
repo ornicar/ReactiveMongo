@@ -2,9 +2,9 @@ organization := "org.reactivemongo"
 
 name := "ReactiveMongo-BSON-Macros"
 
-version := "0.9"
+version := "0.10.4-THIB"
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.10.2"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
