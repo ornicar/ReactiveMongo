@@ -2,7 +2,7 @@ organization := "org.reactivemongo"
 
 name := "ReactiveMongo-BSON"
 
-version := "0.10.4-THIB"
+version := "0.10.5-THIB"
 
 scalaVersion := "2.10.2"
 
