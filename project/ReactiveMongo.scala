@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 object BuildSettings {
-  val buildVersion = "0.10.0-THIB"
+  val buildVersion = "0.10.6-THIB"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
