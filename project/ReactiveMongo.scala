@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 object BuildSettings {
-  val buildVersion = "0.10.5-THIB"
+  val buildVersion = "0.10.6-THIB"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
@@ -38,31 +38,14 @@ object Resolvers {
 object Dependencies {
   val netty = "io.netty" % "netty" % "3.6.5.Final" cross CrossVersion.Disabled
 
-  def akkaActor(sv: String) = sv match {
-    case "2.10.0" => "com.typesafe.akka" %% "akka-actor" % "2.1.0"
-    case "2.10.1" => "com.typesafe.akka" %% "akka-actor" % "2.1.2"
-    case "2.10.2" => "com.typesafe.akka" %% "akka-actor" % "2.1.2"
-  }
+  val akkaActor = "com.typesafe.akka" %% "akka-actor" % "2.2.1"
 
-  def iteratees(sv: String) = sv match {
-    case "2.10.0" => "play" %% "play-iteratees" % "2.1.0"
-    case "2.10.1" => "play" %% "play-iteratees" % "2.1.1"
-    case "2.10.2" => "play" %% "play-iteratees" % "2.1.4"
-  }
+  val iteratees = "com.typesafe.play" %% "play-iteratees" % "2.2.0-RC2"
 
-  val logbackVer = "1.0.11"
-  val logback = Seq(
-    "ch.qos.logback" % "logback-core" % logbackVer,
-    "ch.qos.logback" % "logback-classic" % logbackVer)
+  val specs = "org.specs2" %% "specs2" % "2.2.1" % "test"
 
-  def specs(sv: String) = sv match {
-    case "2.10.0" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
-    case "2.10.1" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
-    case "2.10.2" => "org.specs2" % "specs2" % "1.14" % "test" cross CrossVersion.binary
-  }
-
-  val junit = "junit" % "junit" % "4.8" % "test" cross CrossVersion.Disabled
-  val testDeps = Seq(junit)
+  val log4jVersion = "2.0-beta9"
+  val log4j = Seq("org.apache.logging.log4j" % "log4j-api" % log4jVersion, "org.apache.logging.log4j" % "log4j-core" % log4jVersion)
 }
 
 object ReactiveMongoBuild extends Build {
@@ -84,9 +67,9 @@ object ReactiveMongoBuild extends Build {
       resolvers := resolversList,
       libraryDependencies <++= (scalaVersion)(sv => Seq(
         netty,
-        akkaActor(sv),
-        iteratees(sv),
-        specs(sv)) ++ logback ++ testDeps))) dependsOn (bsonmacros)
+        akkaActor,
+        iteratees,
+        specs) ++ log4j))) dependsOn (bsonmacros)
 
   lazy val bson = Project(
     "ReactiveMongo-BSON",
