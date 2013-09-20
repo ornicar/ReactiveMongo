@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 object BuildSettings {
-  val buildVersion = "0.10.6-THIB"
+  val buildVersion = "0.10.7-THIB"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
@@ -40,7 +40,7 @@ object Dependencies {
 
   val akkaActor = "com.typesafe.akka" %% "akka-actor" % "2.2.1"
 
-  val iteratees = "com.typesafe.play" %% "play-iteratees" % "2.2.0-RC2"
+  val iteratees = "com.typesafe.play" %% "play-iteratees" % "2.2.0"
 
   val specs = "org.specs2" %% "specs2" % "2.2.1" % "test"
 
