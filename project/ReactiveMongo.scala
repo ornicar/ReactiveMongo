@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 object BuildSettings {
-  val buildVersion = "0.10.0-PRISMIC"
+  val buildVersion = "0.10.1-PRISMIC"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
