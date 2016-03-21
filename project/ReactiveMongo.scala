@@ -3,7 +3,7 @@ import sbt.Keys._
 import scala.language.postfixOps
 
 object BuildSettings {
-  val buildVersion = "0.11.9"
+  val buildVersion = "0.11.9.1-LILA"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
@@ -15,20 +15,21 @@ object BuildSettings {
   val buildSettings = Defaults.coreDefaultSettings ++ Seq(
     organization := "org.reactivemongo",
     version := buildVersion,
-    scalaVersion := "2.11.7",
-    crossScalaVersions := Seq("2.11.7", "2.10.4"),
+    scalaVersion := "2.11.8",
     crossVersion := CrossVersion.binary,
     javaOptions in test ++= Seq("-Xmx512m", "-XX:MaxPermSize=512m"),
     //fork in Test := true, // Don't share executioncontext between SBT CLI/tests
     scalacOptions in Compile ++= Seq(
-      "-unchecked", "-deprecation", "-target:jvm-1.6", "-Ywarn-unused-import"),
-    scalacOptions in (Compile, doc) ++= Seq("-unchecked", "-deprecation", "-diagrams", "-implicits", "-skip-packages", "samples"),
-    scalacOptions in (Compile, doc) ++= Opts.doc.title("ReactiveMongo API"),
-    scalacOptions in (Compile, doc) ++= Opts.doc.version(buildVersion),
+      "-unchecked", "-deprecation", "-target:jvm-1.8", "-Ywarn-unused-import"),
+    sources in doc in Compile := List(),
+    // disable publishing the main API jar
+    publishArtifact in (Compile, packageDoc) := false,
+    // disable publishing the main sources jar
+    publishArtifact in (Compile, packageSrc) := false,
     scalacOptions in Compile := {
       val opts = (scalacOptions in Compile).value
 
-      if (scalaVersion.value != "2.11.7") {
+      if (scalaVersion.value != "2.11.8") {
         opts.filter(_ != "-Ywarn-unused-import")
       } else opts
     },
