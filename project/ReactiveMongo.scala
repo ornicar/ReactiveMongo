@@ -3,7 +3,7 @@ import sbt.Keys._
 import scala.language.postfixOps
 
 object BuildSettings {
-  val buildVersion = "0.11.9.1-LILA"
+  val buildVersion = "0.11.9.2-LILA"
 
   val filter = { (ms: Seq[(File, String)]) =>
     ms filter {
