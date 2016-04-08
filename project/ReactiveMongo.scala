@@ -66,7 +66,7 @@ object Publish {
       mmp.affectedVersion == ClassVersion.Old) => false
 
     case _ => true
-  }  
+  }
 
   val mimaSettings = mimaDefaultSettings ++ Seq(
     previousArtifacts := {
@@ -167,9 +167,9 @@ object Resolvers {
 object Dependencies {
   val netty = "io.netty" % "netty" % "3.10.5.Final" cross CrossVersion.Disabled
 
-  val akkaActor = "com.typesafe.akka" %% "akka-actor" % "2.3.6"
+  val akkaActor = "com.typesafe.akka" %% "akka-actor" % "2.4.3"
 
-  val playIteratees = "com.typesafe.play" %% "play-iteratees" % "2.3.10"
+  val playIteratees = "com.typesafe.play" %% "play-iteratees" % "2.4.6"
 
   val specs = "org.specs2" %% "specs2-core" % "3.7.2" % Test
 
@@ -212,7 +212,7 @@ object ReactiveMongoBuild extends Build {
       settings(previousArtifacts := Set.empty).
       aggregate(bson, bsonmacros, shadedDeps, driver)
 
-  lazy val shadedDeps = 
+  lazy val shadedDeps =
     Project(
       s"$projectPrefix-Shaded",
       file("shaded"),
