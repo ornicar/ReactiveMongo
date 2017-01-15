@@ -3,7 +3,7 @@ import sbt.Keys._
 import scala.language.postfixOps
 
 object BuildSettings {
-  val nextMajor = "0.12.1"
+  val nextMajor = "0.12.1-LILA"
   val buildVersion = nextMajor
 
   val filter = { (ms: Seq[(File, String)]) =>
@@ -33,8 +33,7 @@ object BuildSettings {
       else Seq("-Ywarn-unused", "-Xlint:missing-interpolator")
     },
     scalacOptions in Compile ++= {
-      if (!scalaVersion.value.startsWith("2.12.")) Seq("-target:jvm-1.6")
-      else Nil
+      Seq("-target:jvm-1.8")
     },
     scalacOptions in (Compile, doc) ++= Seq("-unchecked", "-deprecation",
       /*"-diagrams", */"-implicits", "-skip-packages", "samples"),
@@ -191,10 +190,7 @@ object Dependencies {
   }
 
   val playIteratees = Def.setting[ModuleID] {
-    val ver = sys.env.get("ITERATEES_VERSION").getOrElse {
-      if (scalaVersion.value startsWith "2.10.") "2.3.9"
-      else "2.6.1"
-    }
+    val ver = "2.4.6"
 
     "com.typesafe.play" %% "play-iteratees" % ver
   }
